@@ -1,1 +1,2 @@
-web: gunicorn macromania.wsgi:application
+web: gunicorn MacroMania.wsgi:application --log-file -
+
