@@ -9,6 +9,8 @@ MacroMania is a user-friendly calorie tracking application designed to help indi
 - **Exercise Equivalents**: Discover various exercises and the duration required to burn off the calories consumed.
 - **Health Alerts**: Receive warnings about high sodium levels and other health considerations.
 
+![MacromaniaGIF](https://github.com/syedarman1/macro_mania/assets/148717758/0aa18f4a-f1cb-42a0-8a1a-788867d274b3)
+
 ## Usage
 Upon launching the app:
 1. Use the search bar to find the food item you wish to track.
