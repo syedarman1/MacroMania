@@ -18,3 +18,4 @@ Upon launching the app:
 3. Adjust serving sizes to match your actual intake.
 4. If interested, check the exercise equivalents to see how much activity is needed to offset the calories.
 
+WORK IN PROGRESS !
