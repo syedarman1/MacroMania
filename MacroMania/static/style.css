@@ -1,111 +1,166 @@
-/* Base Styles */
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f4f7fa;
+  background-color: #f4f4f9;
   color: #333;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+nav.navbar {
+  background-color: #333;
+  padding: 10px;
 }
 
-/* Container for general padding */
+nav.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+nav.navbar li.logo {
+  margin-right: auto; 
+}
+
+nav.navbar li {
+  margin-right: 20px;
+}
+
+nav.navbar li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav.navbar li a:hover {
+  text-decoration: underline;
+}
+
+
+header {
+  text-align: center;
+  padding: 10px;
+}
+
+header img.logo {
+  width: 150px;
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
-/* Logo */
-.logo {
-  width: 18em;
-  height: auto;
-  margin-bottom: 30px;
+.main-content {
+  margin-top: 40px;
+  text-align: center;
 }
 
-/* Input field and button */
-input[type="text"] {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+input.form-control {
+  padding: 10px;
+  font-size: 1.1rem;
   width: 60%;
   margin-right: 10px;
 }
 
-button {
+button.btn-primary {
+  padding: 10px 20px;
   background-color: #3498db;
   color: white;
-  padding: 12px 25px;
   border: none;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 1.1rem;
 }
 
-button:hover {
-  background-color: #2980b9;
+button.btn-secondary {
+  padding: 10px 20px;
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #2c3e50;
+.unit-section {
+  margin: 20px 0;
 }
 
+.unit-section label {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
 
-.nutrition-list {
+.nutrition-container {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
 }
 
 .nutrition-card {
   background-color: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  text-align: center;
-  transition: transform 0.2s ease;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  width: 30%;
+  margin: 10px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.nutrition-card:hover {
-  transform: translateY(-5px);
+h1 {
+  color: #2c3e50;
+  margin-bottom: 30px;
 }
 
-.nutrition-card p {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #555;
-}
-
+/* Dark Mode */
 .dark-mode {
   background-color: #2c3e50;
-  color: #ecf0f1;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #ecf0f1;  
 }
 
+/* Dark Mode for Calorie Tracker Heading */
+.dark-mode .calorie-tracker-title, .dark-mode .calorie-tracker-heading {
+  color: #ecf0f1; 
+}
+
+/* Dark Mode for primary and secondary buttons */
+.dark-mode .btn-primary {
+  background-color: #e74c3c;
+}
+
+.dark-mode .btn-secondary {
+  background-color: #7f8c8d;
+}
+
+/* Nutrition cards background color in dark mode */
 .dark-mode .nutrition-card {
   background-color: #34495e;
+  color: white;
 }
 
-.dark-mode button {
-  background-color: #e67e22;
+.calorie-tracker-heading {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: block;
 }
 
-.dark-mode button:hover {
-  background-color: #d35400;
+
+/* Flexbox for logo and title alignment */
+.logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 
-@media (max-width: 768px) {
-  input[type="text"] {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .nutrition-list {
-    flex-direction: column;
-    align-items: center;
-  }
+.calorie-tracker-title {
+  font-size: 3rem !important;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333; 
 }
+
