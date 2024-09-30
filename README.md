@@ -1,4 +1,4 @@
-# MacroMania (CURRENTLY UNDER CONSTRUCTION)- Calorie Counter & Nutritional Guide
+# MacroMania (CURRENTLY UNDER CONSTRUCTION DISREGARD OVERVIEW AND FEATURES)- Calorie Counter & Nutritional Guide
 
 ## Overview
 MacroMania is a user-friendly calorie tracking application designed to help individuals monitor their caloric intake and manage their nutritional goals. With a sleek interface and a powerful database, users can easily search for foods, view nutritional content, and learn how much exercise is needed to burn calories from their meals.
@@ -9,7 +9,6 @@ MacroMania is a user-friendly calorie tracking application designed to help indi
 - **Exercise Equivalents**: Discover various exercises and the duration required to burn off the calories consumed.
 - **Health Alerts**: Receive warnings about high sodium levels and other health considerations.
 
-![MacromaniaGIF](https://github.com/syedarman1/macro_mania/assets/148717758/0aa18f4a-f1cb-42a0-8a1a-788867d274b3)
 
 ## Usage
 Upon launching the app:
