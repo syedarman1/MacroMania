@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+    <link href="{% static 'bmi.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="calculator-container">
+        <h1 class="calculator-title">Body Mass Index Calculator</h1>
+        <p class="calculator-description">Using the Body Mass Index calculator, find out how your BMI fits into the healthy range.</p>
+
+        <div class="form-section">
+            <div class="form-box">
+                <h2>What is your sex?</h2>
+                <button class="gender-btn">Male</button>
+                <button class="gender-btn">Female</button>
+            </div>
+
+            <div class="form-box">
+                <h2>How old are you?</h2>
+                <input type="number" value="21" class="input-field"> Years
+            </div>
+
+            <div class="form-box">
+                <h2>How tall are you?</h2>
+                <input type="number" value="180" class="input-field"> cm
+                <br>
+                <button class="unit-btn">cm</button>
+                <button class="unit-btn">ft/in</button>
+            </div>
+
+            <div class="form-box">
+                <h2>How much do you weigh?</h2>
+                <input type="number" value="60" class="input-field"> kg
+                <br>
+                <button class="unit-btn">kg</button>
+                <button class="unit-btn">lb</button>
+            </div>
+
+            <button class="submit-btn">Calculate your BMI</button>
+        </div>
+    </div>
+{% endblock %}

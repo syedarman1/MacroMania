@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+    <link href="{% static 'tdee.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Daily Calories Burned Calculator</h1>
+        <p>Feel free to use the TDEE calculator to learn your Total Daily Energy Expenditure, a measure of how many calories you burn per day.</p>
+
+        <div class="form-section">
+            <div class="form-box">
+                <h2>What is your sex?</h2>
+                <button class="gender-btn">Male</button>
+                <button class="gender-btn">Female</button>
+            </div>
+
+            <div class="form-box">
+                <h2>How old are you?</h2>
+                <input type="number" value="21" class="input-field"> Years
+            </div>
+
+            <div class="form-box">
+                <h2>How tall are you?</h2>
+                <input type="number" value="180" class="input-field"> cm
+                <br>
+                <button class="unit-btn">cm</button>
+                <button class="unit-btn">ft/in</button>
+            </div>
+
+            <div class="form-box">
+                <h2>How much do you weigh?</h2>
+                <input type="number" value="60" class="input-field"> kg
+                <br>
+                <button class="unit-btn">kg</button>
+                <button class="unit-btn">lb</button>
+            </div>
+
+            <div class="form-box full">
+                <h2>How active are you on a daily basis?</h2>
+                <button class="activity-btn">Lightly active</button>
+                <button class="activity-btn">Moderately active</button>
+                <button class="activity-btn">Active</button>
+                <button class="activity-btn">Very Active</button>
+            </div>
+        </div>
+
+        <button class="submit-btn">Calculate your needed calorie intake</button>
+    </div>
+{% endblock %}

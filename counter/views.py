@@ -32,3 +32,10 @@ def home(request):
                 return render(request, 'home.html', {'api': 'No data found for the given query.'})
     else:
         return render(request, 'home.html', {'query': 'Enter a valid query'})
+
+
+def bmi_calculator(request):
+    return render(request, 'bmi.html')
+
+def tdee_calculator(request):
+    return render(request, 'tdee.html')

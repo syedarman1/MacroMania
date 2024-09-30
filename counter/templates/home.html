@@ -1,118 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% load static %}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
-    <link rel="icon" type="image/png" href="{% static 'images/favicon.ico' %}">
-    <title>MacroMania</title>
+{% extends 'base.html' %}
+{% load static %}
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  </head>
+{% block content %}
+  <h2 class="calorie-tracker-title" style="font-size: 3rem;">
+    Calorie Tracker
+  </h2>
 
-  <body>
-    <!-- Top Navigation for Extra Calculators -->
-    <nav class="navbar">
-      <ul>
-        <li class="logo"><a href="#">MacroMania</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">BMI Calculator</a></li>
-        <li><a href="#">TDEE Calculator</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-</body>
+  <div class="container">
+    <div class="main-content">
+      <!-- Search bar and button -->
+      <form method="POST" class="search-bar">
+        {% csrf_token %}
+        <input type="text" name="query" class="form-control" placeholder="Search for calories in your food..." required />
+        <button class="btn btn-primary" type="submit">Find calories</button>
+      </form>
 
-    <!-- Logo placed in the top-left corner -->
-    <header>
-      <img src="{% static 'images/logo.png' %}" id="logo" class="logo" alt="MacroMania Logo" />
-    </header>
-
-    <h2 class="calorie-tracker-title" style="font-size: 3rem;">
-      Calorie Tracker
-    </h2>
-
-    <div class="container">
-      <div class="main-content">
-        <!-- Search bar and button -->
-        <form method="POST" class="search-bar">
-          {% csrf_token %}
-          <input type="text" name="query" class="form-control" placeholder="Search for calories in your food..." required />
-          <button class="btn btn-primary" type="submit">Find calories</button>
-        </form>
-
-        <!-- Unit input and conversions -->
-        <div class="unit-section">
-          <label for="unit-input">Choose unit of measure:</label>
-          <input type="number" id="unit-input" value="100" />
-          <select id="unit-select">
-            <option value="1">grams</option>
-            <option value="28.35">oz</option>
-            <option value="453.6">lbs</option>
-          </select>
-        </div>
-
-        {% if api %}
-        <!-- Displaying the calorie and nutrition info -->
-        <h1 id="calories">{{ api.foods.0.food_name | capfirst }} has a total of <strong>{{ api.foods.0.nf_calories }} Calories</strong></h1>
-        <div class="nutrition-container">
-          <div class="nutrition-card" id="carbs">Carbohydrates: {{ api.foods.0.nf_total_carbohydrate }} g</div>
-          <div class="nutrition-card" id="fats">Total Fat: {{ api.foods.0.nf_total_fat }} g</div>
-          <div class="nutrition-card" id="protein">Protein: {{ api.foods.0.nf_protein }} g</div>
-          <div class="nutrition-card" id="sodium">Sodium: {{ api.foods.0.nf_sodium }} mg</div>
-          <div class="nutrition-card" id="potassium">Potassium: {{ api.foods.0.nf_potassium }} mg</div>
-          <div class="nutrition-card" id="sugar">Sugar: {{ api.foods.0.nf_sugars }} g</div>
-        </div>
-
-        <!-- Store API values for dynamic calculation -->
-        <script>
-          const calories = {{ api.foods.0.nf_calories }};
-          const carbs = {{ api.foods.0.nf_total_carbohydrate }};
-          const fats = {{ api.foods.0.nf_total_fat }};
-          const protein = {{ api.foods.0.nf_protein }};
-          const sodium = {{ api.foods.0.nf_sodium }};
-          const potassium = {{ api.foods.0.nf_potassium }};
-          const sugar = {{ api.foods.0.nf_sugars }};
-        </script>
-        {% endif %}
-
-        <button class="btn btn-secondary" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+      <!-- Unit input and conversions -->
+      <div class="unit-section">
+        <label for="unit-input">Choose unit of measure:</label>
+        <input type="number" id="unit-input" value="100" />
+        <select id="unit-select">
+          <option value="1">grams</option>
+          <option value="28.35">oz</option>
+          <option value="453.6">lbs</option>
+        </select>
       </div>
+
+      {% if api %}
+      <!-- Displaying the calorie and nutrition info -->
+      <h1 id="calories">{{ api.foods.0.food_name | capfirst }} has a total of <strong>{{ api.foods.0.nf_calories }} Calories</strong></h1>
+      <div class="nutrition-container">
+        <div class="nutrition-card" id="carbs">Carbohydrates: {{ api.foods.0.nf_total_carbohydrate }} g</div>
+        <div class="nutrition-card" id="fats">Total Fat: {{ api.foods.0.nf_total_fat }} g</div>
+        <div class="nutrition-card" id="protein">Protein: {{ api.foods.0.nf_protein }} g</div>
+        <div class="nutrition-card" id="sodium">Sodium: {{ api.foods.0.nf_sodium }} mg</div>
+        <div class="nutrition-card" id="potassium">Potassium: {{ api.foods.0.nf_potassium }} mg</div>
+        <div class="nutrition-card" id="sugar">Sugar: {{ api.foods.0.nf_sugars }} g</div>
+      </div>
+
+      <!-- Store API values for dynamic calculation -->
+      <script>
+        const calories = {{ api.foods.0.nf_calories }};
+        const carbs = {{ api.foods.0.nf_total_carbohydrate }};
+        const fats = {{ api.foods.0.nf_total_fat }};
+        const protein = {{ api.foods.0.nf_protein }};
+        const sodium = {{ api.foods.0.nf_sodium }};
+        const potassium = {{ api.foods.0.nf_potassium }};
+        const sugar = {{ api.foods.0.nf_sugars }};
+      </script>
+      {% endif %}
+
+      <!-- Dark Mode Toggle Button (only on the home page) -->
+      <button class="btn btn-secondary" id="dark-mode-toggle">Toggle Dark Mode</button>
+
     </div>
+  </div>
 
-    <!-- JavaScript for dynamic calorie/nutrient update -->
-    <script>
-      function updateUnits() {
-        const unitInput = parseFloat(document.getElementById("unit-input").value);
-        const unitSelect = parseFloat(document.getElementById("unit-select").value);
+  <!-- JavaScript for dynamic calorie/nutrient update and dark mode handling -->
+  <script>
+    // Function to update units dynamically
+    function updateUnits() {
+      const unitInput = parseFloat(document.getElementById("unit-input").value);
+      const unitSelect = parseFloat(document.getElementById("unit-select").value);
 
-        if (isNaN(unitInput) || isNaN(unitSelect)) {
-          return;
+      if (isNaN(unitInput) || isNaN(unitSelect)) {
+        return;
+      }
+
+      // Conversion factor based on the input amount and selected unit
+      const conversionFactor = (unitInput * unitSelect) / 100;
+
+      // Update calories and nutrient values dynamically
+      document.getElementById("calories").innerHTML =
+        `{{ api.foods.0.food_name | capfirst }} has a total of <strong>${(calories * conversionFactor).toFixed(2)} Calories</strong>`;
+      document.getElementById("carbs").innerText = `Carbohydrates: ${(carbs * conversionFactor).toFixed(2)} g`;
+      document.getElementById("fats").innerText = `Total Fat: ${(fats * conversionFactor).toFixed(2)} g`;
+      document.getElementById("protein").innerText = `Protein: ${(protein * conversionFactor).toFixed(2)} g`;
+      document.getElementById("sodium").innerText = `Sodium: ${(sodium * conversionFactor).toFixed(2)} mg`;
+      document.getElementById("potassium").innerText = `Potassium: ${(potassium * conversionFactor).toFixed(2)} mg`;
+      document.getElementById("sugar").innerText = `Sugar: ${(sugar * conversionFactor).toFixed(2)} g`;
+    }
+
+    // Dark mode functions
+    document.addEventListener("DOMContentLoaded", function() {
+      const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+      // Enable dark mode
+      function enableDarkMode() {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("darkMode", "enabled"); 
+      }
+
+      // Disable dark mode
+      function disableDarkMode() {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("darkMode", "disabled"); 
+      }
+
+      // Load dark mode preference on page load
+      const darkMode = localStorage.getItem("darkMode");
+      if (darkMode === "enabled") {
+        enableDarkMode(); 
+      }
+
+      // Toggle dark mode when the button is clicked
+      darkModeToggle.addEventListener("click", function() {
+        const darkMode = localStorage.getItem("darkMode");
+        if (darkMode === "enabled") {
+          disableDarkMode();
+        } else {
+          enableDarkMode();
         }
+      });
+    });
 
-        // Conversion factor based on the input amount and selected unit
-        const conversionFactor = (unitInput * unitSelect) / 100;
-
-        // Update calories and nutrient values dynamically
-        document.getElementById("calories").innerHTML =
-          `{{ api.foods.0.food_name | capfirst }} has a total of <strong>${(calories * conversionFactor).toFixed(2)} Calories</strong>`;
-        document.getElementById("carbs").innerText = `Carbohydrates: ${(carbs * conversionFactor).toFixed(2)} g`;
-        document.getElementById("fats").innerText = `Total Fat: ${(fats * conversionFactor).toFixed(2)} g`;
-        document.getElementById("protein").innerText = `Protein: ${(protein * conversionFactor).toFixed(2)} g`;
-        document.getElementById("sodium").innerText = `Sodium: ${(sodium * conversionFactor).toFixed(2)} mg`;
-        document.getElementById("potassium").innerText = `Potassium: ${(potassium * conversionFactor).toFixed(2)} mg`;
-        document.getElementById("sugar").innerText = `Sugar: ${(sugar * conversionFactor).toFixed(2)} g`;
-      }
-
-      function toggleDarkMode() {
-        document.body.classList.toggle("dark-mode");
-      }
-
-      // Add event listeners
-      document.getElementById('unit-input').addEventListener('input', updateUnits);
-      document.getElementById('unit-select').addEventListener('change', updateUnits);
-    </script>
-  </body>
-</html>
+    // Add event listeners for unit input changes
+    document.getElementById('unit-input').addEventListener('input', updateUnits);
+    document.getElementById('unit-select').addEventListener('change', updateUnits);
+  </script>
+{% endblock %}

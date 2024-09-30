@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+    <title>MacroMania</title>
+
+    {% block extra_styles %}
+    {% endblock %}
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Top Navigation for Calculators -->
+    <nav class="navbar">
+      <ul>
+        <li class="logo"><a href="#">MacroMania</a></li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'bmi_calculator' %}">BMI Calculator</a></li>
+        <li><a href="{% url 'tdee_calculator' %}">TDEE Calculator</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    
+    <header>
+      <img src="{% static 'images/logo.png' %}" id="logo" class="logo" alt="MacroMania Logo" />
+    </header>
+
+    <!-- Content Block  -->
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+
+  <!-- Add this to your base.html -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const darkMode = localStorage.getItem("darkMode");
+      if (darkMode === "enabled") {
+        document.body.classList.add("dark-mode"); 
+      }
+    });
+  </script>
+  
+</html>

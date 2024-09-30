@@ -114,46 +114,55 @@ h1 {
   color: #2c3e50;
   margin-bottom: 30px;
 }
-
 /* Dark Mode */
 .dark-mode {
-  background-color: #2c3e50;
-  color: #ecf0f1;  
-}
-
-/* Dark Mode for Calorie Tracker Heading */
-.dark-mode .calorie-tracker-title, .dark-mode .calorie-tracker-heading {
+  background-color: #2c3e50; 
   color: #ecf0f1; 
 }
 
-/* Dark Mode for primary and secondary buttons */
-.dark-mode .btn-primary {
-  background-color: #e74c3c;
+/* Calorie Tracker Heading */
+.dark-mode .calorie-tracker-title, 
+.dark-mode .calorie-tracker-heading {
+  color: #ecf0f1; 
 }
 
-.dark-mode .btn-secondary {
-  background-color: #7f8c8d;
-}
-
-/* Nutrition cards background color in dark mode */
+/* Nutrition Cards in Dark Mode */
 .dark-mode .nutrition-card {
-  background-color: #34495e;
-  color: white;
+  background-color: #3b4a54; 
+  color: #ecf0f1; 
+  border: 1px solid #555; 
 }
 
-.calorie-tracker-heading {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  display: block;
+/* Calorie Text Heading in Dark Mode */
+.dark-mode #calories {
+  color: #ecf0f1; 
 }
 
+/* Primary Button in Dark Mode */
+.dark-mode .btn-primary {
+  background-color: #e74c3c; 
+  color: white; 
+}
+
+/* Secondary Button in Dark Mode */
+.dark-mode .btn-secondary {
+  background-color: #7f8c8d; 
+  color: white; 
+}
 
 /* Flexbox for logo and title alignment */
 .logo-container {
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+/* Center the calorie tracker heading */
+.calorie-tracker-heading {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: block;
 }
 
 .calorie-tracker-title {
