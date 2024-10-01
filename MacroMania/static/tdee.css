@@ -120,7 +120,7 @@ body {
 .tdee-result-section h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #2c3e50; /* Normal mode dark text */
+    color: #2c3e50; 
 }
 
 .tdee-result-container {
@@ -130,7 +130,7 @@ body {
 }
 
 .tdee-result-card {
-    background-color: #f9f9f9; /* Light background for regular mode */
+    background-color: #f9f9f9; 
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -143,7 +143,7 @@ body {
 .tdee-result-card h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: #2c3e50; /* Dark text */
+    color: #2c3e50;
 }
 
 .cal-intake {
@@ -155,19 +155,19 @@ body {
 .cal-range {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #3498db; /* Calorie range in blue */
+    color: #3498db; 
     margin-bottom: 10px;
 }
 
 .description {
     font-size: 1rem;
-    color: #7f8c8d; /* Lighter text */
+    color: #7f8c8d; 
 }
 
 /* Dark Mode Adjustments for readability */
 .dark-mode .calculator-container,
 .dark-mode .tdee-result-card {
-    color: #2c3e50; /* Dark text for better contrast with white background */
+    color: #2c3e50; 
 }
 
 .dark-mode .input-field,
@@ -175,27 +175,26 @@ body {
 .dark-mode .tdee-result-card h3,
 .dark-mode .description,
 .dark-mode .cal-intake {
-    color: #2c3e50; /* Dark text for inputs and result card headings */
+    color: #2c3e50; 
 }
 
-/* Ensure "Your Personal Result" text is dark in dark mode */
+
 .dark-mode h2.personal-result-text {
-    color: #2c3e50 !important; /* Force dark text */
+    color: #2c3e50 !important; 
 }
 
-/* Keep the submit button consistent in dark mode */
+
 .dark-mode .submit-btn {
     background-color: #27ae60;
     color: white;
 }
 
-/* Default container background stays light in dark mode */
 .dark-mode .tdee-result-card {
-    background-color: #f9f9f9; /* Light card background */
-    color: #2c3e50; /* Dark text */
+    background-color: #f9f9f9; 
+    color: #2c3e50; 
 }
 
-/* Additional dark mode adjustments for form section */
+
 .dark-mode .form-box h2 {
-    color: #2c3e50 !important; /* Ensure form heading stays dark */
+    color: #2c3e50 !important; 
 }

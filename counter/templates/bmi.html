@@ -47,18 +47,15 @@
 
             <button class="submit-btn" onclick="calculateBMI()">Calculate your BMI</button>
 
-            <!-- Div to display the BMI result -->
             <div id="bmi-result" class="bmi-result"></div>
         </div>
     </div>
 
-    <!-- JavaScript for BMI calculation -->
     <script>
-      let gender = 'male'; // Default to male
-      let heightUnit = 'cm'; // Default height unit
-      let weightUnit = 'kg'; // Default weight unit
+      let gender = 'male'; 
+      let heightUnit = 'cm'; 
+      let weightUnit = 'kg'; 
 
-      // Function to set gender and update button styles
       function setGender(selectedGender) {
         gender = selectedGender;
         document.getElementById('male-btn').classList.remove('active');
@@ -70,7 +67,6 @@
         }
       }
 
-      // Function to toggle height unit between cm and ft/in
       function toggleHeightUnit(unit) {
         if (unit === 'cm') {
           heightUnit = 'cm';
@@ -83,38 +79,35 @@
         }
       }
 
-      // Function to toggle weight unit between kg and lb
       function toggleWeightUnit(unit) {
         weightUnit = unit;
         document.getElementById("weight-unit").textContent = unit;
       }
 
     
-      // Function to calculate BMI
 function calculateBMI() {
     let height, weight;
     if (heightUnit === 'cm') {
         height = parseFloat(document.getElementById("height-cm").value);
-        height = height / 100; // Convert cm to meters
+        height = height / 100; 
     } else {
         const feet = parseFloat(document.getElementById("height-ft").value);
         const inches = parseFloat(document.getElementById("height-in").value);
-        height = (feet * 12 + inches) * 0.0254; // Convert feet/inches to meters
+        height = (feet * 12 + inches) * 0.0254; 
     }
 
     weight = parseFloat(document.getElementById("weight").value);
     if (weightUnit === 'lb') {
-        weight = weight * 0.453592; // Convert lb to kg
+        weight = weight * 0.453592; 
     }
 
-    // Check if height or weight are not valid
     if (!height || !weight) {
-        document.getElementById("bmi-result").style.display = "block"; // Show the result div
+        document.getElementById("bmi-result").style.display = "block"; 
         document.getElementById("bmi-result").innerHTML = "Please enter valid numbers for height and weight.";
         return;
     }
 
-    const bmi = weight / (height * height); // BMI formula
+    const bmi = weight / (height * height); 
 
     let bmiMessage = `Your BMI is ${bmi.toFixed(2)}.`;
 
@@ -128,8 +121,7 @@ function calculateBMI() {
         bmiMessage += " You are obese.";
     }
 
-    // Display the result and make the div visible
-    document.getElementById("bmi-result").style.display = "block"; // Show the result div
+    document.getElementById("bmi-result").style.display = "block"; 
     document.getElementById("bmi-result").innerHTML = bmiMessage;
 }
 

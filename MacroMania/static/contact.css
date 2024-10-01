@@ -51,8 +51,8 @@ body {
 
 /* Input Field Styling */
 .input-field {
-    width: 100%;  /* Make sure the input field fits within the container */
-    max-width: 100%; /* Prevent it from going beyond the container */
+    width: 100%;  
+    max-width: 100%; 
     padding: 12px;
     font-size: 1.1rem;
     border: 2px solid #ddd;
@@ -60,7 +60,7 @@ body {
     margin-bottom: 10px;
     background-color: #fff;
     color: #333;
-    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    box-sizing: border-box; 
 }
 
 /* Placeholder Text Styling */

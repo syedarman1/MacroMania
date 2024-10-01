@@ -11,12 +11,11 @@
     {% block extra_styles %}
     {% endblock %}
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   </head>
 
   <body>
-    <!-- Top Navigation for Calculators -->
     <nav class="navbar">
       <ul>
         <li class="logo"><a href="#">MacroMania</a></li>
@@ -32,14 +31,12 @@
       <img src="{% static 'images/logo.png' %}" id="logo" class="logo" alt="MacroMania Logo" />
     </header>
 
-    <!-- Content Block  -->
     <div class="container">
       {% block content %}
       {% endblock %}
     </div>
   </body>
 
-  <!-- Add this to your base.html -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
       const darkMode = localStorage.getItem("darkMode");

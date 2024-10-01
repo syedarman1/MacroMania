@@ -8,14 +8,12 @@
 
   <div class="container">
     <div class="main-content">
-      <!-- Search bar and button -->
       <form method="POST" class="search-bar">
         {% csrf_token %}
         <input type="text" name="query" class="form-control" placeholder="Search for calories in your food..." required />
         <button class="btn btn-primary" type="submit">Find calories</button>
       </form>
 
-      <!-- Unit input and conversions -->
       <div class="unit-section">
         <label for="unit-input">Choose unit of measure:</label>
         <input type="number" id="unit-input" value="100" />
@@ -27,7 +25,6 @@
       </div>
 
       {% if api %}
-      <!-- Displaying the calorie and nutrition info -->
       <h1 id="calories">{{ api.foods.0.food_name | capfirst }} has a total of <strong>{{ api.foods.0.nf_calories }} Calories</strong></h1>
       <div class="nutrition-container">
         <div class="nutrition-card" id="carbs">Carbohydrates: {{ api.foods.0.nf_total_carbohydrate }} g</div>
@@ -38,7 +35,6 @@
         <div class="nutrition-card" id="sugar">Sugar: {{ api.foods.0.nf_sugars }} g</div>
       </div>
 
-      <!-- Store API values for dynamic calculation -->
       <script>
         const calories = {{ api.foods.0.nf_calories }};
         const carbs = {{ api.foods.0.nf_total_carbohydrate }};
@@ -50,15 +46,14 @@
       </script>
       {% endif %}
 
-      <!-- Dark Mode Toggle Button (only on the home page) -->
       <button class="btn btn-secondary" id="dark-mode-toggle">Toggle Dark Mode</button>
 
     </div>
   </div>
 
-  <!-- JavaScript for dynamic calorie/nutrient update and dark mode handling -->
+  <!-- JavaScript  -->
   <script>
-    // Function to update units dynamically
+    
     function updateUnits() {
       const unitInput = parseFloat(document.getElementById("unit-input").value);
       const unitSelect = parseFloat(document.getElementById("unit-select").value);
@@ -67,10 +62,10 @@
         return;
       }
 
-      // Conversion factor based on the input amount and selected unit
+      
       const conversionFactor = (unitInput * unitSelect) / 100;
 
-      // Update calories and nutrient values dynamically
+     
       document.getElementById("calories").innerHTML =
         `{{ api.foods.0.food_name | capfirst }} has a total of <strong>${(calories * conversionFactor).toFixed(2)} Calories</strong>`;
       document.getElementById("carbs").innerText = `Carbohydrates: ${(carbs * conversionFactor).toFixed(2)} g`;
@@ -81,7 +76,7 @@
       document.getElementById("sugar").innerText = `Sugar: ${(sugar * conversionFactor).toFixed(2)} g`;
     }
 
-    // Dark mode functions
+    // Dark mode
     document.addEventListener("DOMContentLoaded", function() {
       const darkModeToggle = document.getElementById("dark-mode-toggle");
 
@@ -97,13 +92,13 @@
         localStorage.setItem("darkMode", "disabled"); 
       }
 
-      // Load dark mode preference on page load
+      // Load dark mode 
       const darkMode = localStorage.getItem("darkMode");
       if (darkMode === "enabled") {
         enableDarkMode(); 
       }
 
-      // Toggle dark mode when the button is clicked
+      // Toggle dark mode 
       darkModeToggle.addEventListener("click", function() {
         const darkMode = localStorage.getItem("darkMode");
         if (darkMode === "enabled") {
@@ -114,7 +109,7 @@
       });
     });
 
-    // Add event listeners for unit input changes
+    
     document.getElementById('unit-input').addEventListener('input', updateUnits);
     document.getElementById('unit-select').addEventListener('change', updateUnits);
   </script>

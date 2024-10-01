@@ -89,14 +89,12 @@
         </div>
     </div>
 
-    <!-- JavaScript for TDEE Calculation -->
     <script>
-      let tdeeGender = 'male'; // Default to male
-      let activityLevel = 'moderate'; // Default activity level
-      let tdeeHeightUnit = 'cm'; // Default to cm
-      let tdeeWeightUnit = 'kg'; // Default to kg
+      let tdeeGender = 'male'; 
+      let activityLevel = 'moderate'; 
+      let tdeeHeightUnit = 'cm'; 
+      let tdeeWeightUnit = 'kg'; 
 
-      // Function to set gender and update button styles
       function setTDEEGender(selectedGender) {
         tdeeGender = selectedGender;
         document.getElementById('tdee-male-btn').classList.remove('active');
@@ -108,7 +106,6 @@
         }
       }
 
-      // Function to set activity level and update button styles
       function setActivityLevel(level) {
         activityLevel = level;
         const activityButtons = document.querySelectorAll('.activity-btn');
@@ -116,7 +113,6 @@
         event.target.classList.add('active');
       }
 
-      // Function to toggle height unit between cm and ft/in
       function toggleTDEEHeightUnit(unit) {
         if (unit === 'cm') {
           tdeeHeightUnit = 'cm';
@@ -141,16 +137,16 @@
         let height, weight;
 
         if (tdeeHeightUnit === 'cm') {
-          height = parseFloat(document.getElementById('tdee-height-cm').value) / 100; // Convert cm to meters
+          height = parseFloat(document.getElementById('tdee-height-cm').value) / 100; 
         } else {
           const feet = parseFloat(document.getElementById('tdee-height-ft').value);
           const inches = parseFloat(document.getElementById('tdee-height-in').value);
-          height = (feet * 12 + inches) * 0.0254; // Convert feet/inches to meters
+          height = (feet * 12 + inches) * 0.0254; 
         }
 
         weight = parseFloat(document.getElementById('tdee-weight').value);
         if (tdeeWeightUnit === 'lb') {
-          weight = weight * 0.453592; // Convert lb to kg
+          weight = weight * 0.453592; 
         }
 
         let bmr;
@@ -173,12 +169,10 @@
             tdee = bmr * 1.9;
         }
 
-        // Calculate calorie ranges for weight goals
         const loseWeightCalories = `${Math.round(tdee * 0.8)} - ${Math.round(tdee * 0.9)} cal`;
         const maintainWeightCalories = `${Math.round(tdee)} - ${Math.round(tdee * 1.1)} cal`;
         const gainWeightCalories = `${Math.round(tdee * 1.15)} - ${Math.round(tdee * 1.25)} cal`;
 
-        // Update the result cards
         document.getElementById('lose-weight-calories').textContent = loseWeightCalories;
         document.getElementById('maintain-weight-calories').textContent = maintainWeightCalories;
         document.getElementById('gain-weight-calories').textContent = gainWeightCalories;
