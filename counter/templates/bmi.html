@@ -13,32 +13,126 @@
         <div class="form-section">
             <div class="form-box">
                 <h2>What is your sex?</h2>
-                <button class="gender-btn">Male</button>
-                <button class="gender-btn">Female</button>
+                <button class="gender-btn" id="male-btn" onclick="setGender('male')">Male</button>
+                <button class="gender-btn" id="female-btn" onclick="setGender('female')">Female</button>
             </div>
 
             <div class="form-box">
                 <h2>How old are you?</h2>
-                <input type="number" value="21" class="input-field"> Years
+                <input type="number" id="age" value="21" class="input-field"> Years
             </div>
 
             <div class="form-box">
                 <h2>How tall are you?</h2>
-                <input type="number" value="180" class="input-field"> cm
+                <div id="height-cm-container">
+                    <input type="number" id="height-cm" class="input-field" value="180"> cm
+                </div>
+                <div id="height-ftin-container" style="display:none;">
+                    <input type="number" id="height-ft" class="input-field" placeholder="Feet"> ft
+                    <input type="number" id="height-in" class="input-field" placeholder="Inches"> in
+                </div>
                 <br>
-                <button class="unit-btn">cm</button>
-                <button class="unit-btn">ft/in</button>
+                <button class="unit-btn" onclick="toggleHeightUnit('cm')">cm</button>
+                <button class="unit-btn" onclick="toggleHeightUnit('ft')">ft/in</button>
             </div>
 
             <div class="form-box">
                 <h2>How much do you weigh?</h2>
-                <input type="number" value="60" class="input-field"> kg
+                <input type="number" id="weight" class="input-field" value="60"> 
+                <span id="weight-unit">kg</span>
                 <br>
-                <button class="unit-btn">kg</button>
-                <button class="unit-btn">lb</button>
+                <button class="unit-btn" onclick="toggleWeightUnit('kg')">kg</button>
+                <button class="unit-btn" onclick="toggleWeightUnit('lb')">lb</button>
             </div>
 
-            <button class="submit-btn">Calculate your BMI</button>
+            <button class="submit-btn" onclick="calculateBMI()">Calculate your BMI</button>
+
+            <!-- Div to display the BMI result -->
+            <div id="bmi-result" class="bmi-result"></div>
         </div>
     </div>
+
+    <!-- JavaScript for BMI calculation -->
+    <script>
+      let gender = 'male'; // Default to male
+      let heightUnit = 'cm'; // Default height unit
+      let weightUnit = 'kg'; // Default weight unit
+
+      // Function to set gender and update button styles
+      function setGender(selectedGender) {
+        gender = selectedGender;
+        document.getElementById('male-btn').classList.remove('active');
+        document.getElementById('female-btn').classList.remove('active');
+        if (gender === 'male') {
+            document.getElementById('male-btn').classList.add('active');
+        } else {
+            document.getElementById('female-btn').classList.add('active');
+        }
+      }
+
+      // Function to toggle height unit between cm and ft/in
+      function toggleHeightUnit(unit) {
+        if (unit === 'cm') {
+          heightUnit = 'cm';
+          document.getElementById("height-cm-container").style.display = "block";
+          document.getElementById("height-ftin-container").style.display = "none";
+        } else {
+          heightUnit = 'ft';
+          document.getElementById("height-cm-container").style.display = "none";
+          document.getElementById("height-ftin-container").style.display = "block";
+        }
+      }
+
+      // Function to toggle weight unit between kg and lb
+      function toggleWeightUnit(unit) {
+        weightUnit = unit;
+        document.getElementById("weight-unit").textContent = unit;
+      }
+
+    
+      // Function to calculate BMI
+function calculateBMI() {
+    let height, weight;
+    if (heightUnit === 'cm') {
+        height = parseFloat(document.getElementById("height-cm").value);
+        height = height / 100; // Convert cm to meters
+    } else {
+        const feet = parseFloat(document.getElementById("height-ft").value);
+        const inches = parseFloat(document.getElementById("height-in").value);
+        height = (feet * 12 + inches) * 0.0254; // Convert feet/inches to meters
+    }
+
+    weight = parseFloat(document.getElementById("weight").value);
+    if (weightUnit === 'lb') {
+        weight = weight * 0.453592; // Convert lb to kg
+    }
+
+    // Check if height or weight are not valid
+    if (!height || !weight) {
+        document.getElementById("bmi-result").style.display = "block"; // Show the result div
+        document.getElementById("bmi-result").innerHTML = "Please enter valid numbers for height and weight.";
+        return;
+    }
+
+    const bmi = weight / (height * height); // BMI formula
+
+    let bmiMessage = `Your BMI is ${bmi.toFixed(2)}.`;
+
+    if (bmi < 18.5) {
+        bmiMessage += " You are underweight.";
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        bmiMessage += " You are in the normal weight range.";
+    } else if (bmi >= 25 && bmi < 29.9) {
+        bmiMessage += " You are overweight.";
+    } else {
+        bmiMessage += " You are obese.";
+    }
+
+    // Display the result and make the div visible
+    document.getElementById("bmi-result").style.display = "block"; // Show the result div
+    document.getElementById("bmi-result").innerHTML = bmiMessage;
+}
+
+    </script>
+
 {% endblock %}

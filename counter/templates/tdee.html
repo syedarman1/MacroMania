@@ -6,47 +6,183 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Daily Calories Burned Calculator</h1>
-        <p>Feel free to use the TDEE calculator to learn your Total Daily Energy Expenditure, a measure of how many calories you burn per day.</p>
+    <div class="calculator-container">
+        <h1 class="calculator-title">Total Daily Energy Expenditure (TDEE) Calculator</h1>
+        <p class="calculator-description">Use this calculator to find out how many calories you need to maintain, lose, or gain weight based on your activity level.</p>
 
         <div class="form-section">
+            <!-- Gender -->
             <div class="form-box">
                 <h2>What is your sex?</h2>
-                <button class="gender-btn">Male</button>
-                <button class="gender-btn">Female</button>
+                <button class="gender-btn" id="tdee-male-btn" onclick="setTDEEGender('male')">Male</button>
+                <button class="gender-btn" id="tdee-female-btn" onclick="setTDEEGender('female')">Female</button>
             </div>
 
+            <!-- Age -->
             <div class="form-box">
                 <h2>How old are you?</h2>
-                <input type="number" value="21" class="input-field"> Years
+                <input type="number" id="tdee-age" value="25" class="input-field"> Years
             </div>
 
+            <!-- Height with toggle between cm and ft/in -->
             <div class="form-box">
                 <h2>How tall are you?</h2>
-                <input type="number" value="180" class="input-field"> cm
+                <div id="tdee-height-cm-container">
+                    <input type="number" id="tdee-height-cm" class="input-field" value="175"> cm
+                </div>
+                <div id="tdee-height-ftin-container" style="display:none;">
+                    <input type="number" id="tdee-height-ft" class="input-field" placeholder="Feet"> ft
+                    <input type="number" id="tdee-height-in" class="input-field" placeholder="Inches"> in
+                </div>
                 <br>
-                <button class="unit-btn">cm</button>
-                <button class="unit-btn">ft/in</button>
+                <button class="unit-btn" onclick="toggleTDEEHeightUnit('cm')">cm</button>
+                <button class="unit-btn" onclick="toggleTDEEHeightUnit('ft')">ft/in</button>
             </div>
 
+            <!-- Weight with toggle between kg and lb -->
             <div class="form-box">
                 <h2>How much do you weigh?</h2>
-                <input type="number" value="60" class="input-field"> kg
+                <input type="number" id="tdee-weight" class="input-field" value="70">
+                <span id="tdee-weight-unit">kg</span>
                 <br>
-                <button class="unit-btn">kg</button>
-                <button class="unit-btn">lb</button>
+                <button class="unit-btn" onclick="toggleTDEEWeightUnit('kg')">kg</button>
+                <button class="unit-btn" onclick="toggleTDEEWeightUnit('lb')">lb</button>
             </div>
 
+            <!-- Activity Level -->
             <div class="form-box full">
                 <h2>How active are you on a daily basis?</h2>
-                <button class="activity-btn">Lightly active</button>
-                <button class="activity-btn">Moderately active</button>
-                <button class="activity-btn">Active</button>
-                <button class="activity-btn">Very Active</button>
+                <button class="activity-btn" onclick="setActivityLevel('sedentary')">Sedentary</button>
+                <button class="activity-btn" onclick="setActivityLevel('light')">Lightly active</button>
+                <button class="activity-btn" onclick="setActivityLevel('moderate')">Moderately active</button>
+                <button class="activity-btn" onclick="setActivityLevel('active')">Active</button>
+                <button class="activity-btn" onclick="setActivityLevel('very-active')">Very Active</button>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="submit-btn" onclick="calculateTDEE()">Calculate your TDEE</button>
+
+            <!-- TDEE Result Cards -->
+            <div id="tdee-result" class="tdee-result-section">
+                <h2 class="personal-result-text">Your Personal Result</h2>
+                <div class="tdee-result-container">
+                    <div class="tdee-result-card">
+                        <h3>Lose weight</h3>
+                        <p class="cal-intake">Calorie intake per day</p>
+                        <p class="cal-range" id="lose-weight-calories">-</p>
+                        <p class="description">This range of daily calories will enable you to lose 1-2 lb per week in a healthy and sustainable way.</p>
+                    </div>
+                    <div class="tdee-result-card">
+                        <h3>Maintain weight</h3>
+                        <p class="cal-intake">Calorie intake per day</p>
+                        <p class="cal-range" id="maintain-weight-calories">-</p>
+                        <p class="description">This range of daily calories will enable you to maintain your current weight.</p>
+                    </div>
+                    <div class="tdee-result-card">
+                        <h3>Gain weight</h3>
+                        <p class="cal-intake">Calorie intake per day</p>
+                        <p class="cal-range" id="gain-weight-calories">-</p>
+                        <p class="description">This range of daily calories will enable you to gain 1-2 lb per week.</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <button class="submit-btn">Calculate your needed calorie intake</button>
     </div>
+
+    <!-- JavaScript for TDEE Calculation -->
+    <script>
+      let tdeeGender = 'male'; // Default to male
+      let activityLevel = 'moderate'; // Default activity level
+      let tdeeHeightUnit = 'cm'; // Default to cm
+      let tdeeWeightUnit = 'kg'; // Default to kg
+
+      // Function to set gender and update button styles
+      function setTDEEGender(selectedGender) {
+        tdeeGender = selectedGender;
+        document.getElementById('tdee-male-btn').classList.remove('active');
+        document.getElementById('tdee-female-btn').classList.remove('active');
+        if (tdeeGender === 'male') {
+            document.getElementById('tdee-male-btn').classList.add('active');
+        } else {
+            document.getElementById('tdee-female-btn').classList.add('active');
+        }
+      }
+
+      // Function to set activity level and update button styles
+      function setActivityLevel(level) {
+        activityLevel = level;
+        const activityButtons = document.querySelectorAll('.activity-btn');
+        activityButtons.forEach(button => button.classList.remove('active'));
+        event.target.classList.add('active');
+      }
+
+      // Function to toggle height unit between cm and ft/in
+      function toggleTDEEHeightUnit(unit) {
+        if (unit === 'cm') {
+          tdeeHeightUnit = 'cm';
+          document.getElementById("tdee-height-cm-container").style.display = "block";
+          document.getElementById("tdee-height-ftin-container").style.display = "none";
+        } else {
+          tdeeHeightUnit = 'ft';
+          document.getElementById("tdee-height-cm-container").style.display = "none";
+          document.getElementById("tdee-height-ftin-container").style.display = "block";
+        }
+      }
+
+      // Function to toggle weight unit between kg and lb
+      function toggleTDEEWeightUnit(unit) {
+        tdeeWeightUnit = unit;
+        document.getElementById("tdee-weight-unit").textContent = unit;
+      }
+
+      // Function to calculate TDEE
+      function calculateTDEE() {
+        const age = parseFloat(document.getElementById('tdee-age').value);
+        let height, weight;
+
+        if (tdeeHeightUnit === 'cm') {
+          height = parseFloat(document.getElementById('tdee-height-cm').value) / 100; // Convert cm to meters
+        } else {
+          const feet = parseFloat(document.getElementById('tdee-height-ft').value);
+          const inches = parseFloat(document.getElementById('tdee-height-in').value);
+          height = (feet * 12 + inches) * 0.0254; // Convert feet/inches to meters
+        }
+
+        weight = parseFloat(document.getElementById('tdee-weight').value);
+        if (tdeeWeightUnit === 'lb') {
+          weight = weight * 0.453592; // Convert lb to kg
+        }
+
+        let bmr;
+        if (tdeeGender === 'male') {
+            bmr = 10 * weight + 6.25 * height * 100 - 5 * age + 5;
+        } else {
+            bmr = 10 * weight + 6.25 * height * 100 - 5 * age - 161;
+        }
+
+        let tdee;
+        if (activityLevel === 'sedentary') {
+            tdee = bmr * 1.2;
+        } else if (activityLevel === 'light') {
+            tdee = bmr * 1.375;
+        } else if (activityLevel === 'moderate') {
+            tdee = bmr * 1.55;
+        } else if (activityLevel === 'active') {
+            tdee = bmr * 1.725;
+        } else if (activityLevel === 'very-active') {
+            tdee = bmr * 1.9;
+        }
+
+        // Calculate calorie ranges for weight goals
+        const loseWeightCalories = `${Math.round(tdee * 0.8)} - ${Math.round(tdee * 0.9)} cal`;
+        const maintainWeightCalories = `${Math.round(tdee)} - ${Math.round(tdee * 1.1)} cal`;
+        const gainWeightCalories = `${Math.round(tdee * 1.15)} - ${Math.round(tdee * 1.25)} cal`;
+
+        // Update the result cards
+        document.getElementById('lose-weight-calories').textContent = loseWeightCalories;
+        document.getElementById('maintain-weight-calories').textContent = maintainWeightCalories;
+        document.getElementById('gain-weight-calories').textContent = gainWeightCalories;
+      }
+    </script>
+
 {% endblock %}

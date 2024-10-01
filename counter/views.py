@@ -39,3 +39,14 @@ def bmi_calculator(request):
 
 def tdee_calculator(request):
     return render(request, 'tdee.html')
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        print(f'Name: {name}, Email: {email}, Message: {message}')
+
+        return render(request, 'contact.html', {'success': 'Your message has been sent!'})
+    return render(request, 'contact.html')

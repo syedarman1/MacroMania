@@ -1,3 +1,4 @@
+/* General Body Styling */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f9;
@@ -6,45 +7,46 @@ body {
     padding: 0;
 }
 
-#logo {
-    margin-bottom: 10px; 
-}
-
-.container {
+/* Calculator Container Styling */
+.calculator-container {
     max-width: 900px;
-    margin: 20px auto; 
+    margin: 20px auto;
     padding: 20px;
     background-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
-h1 {
+/* Title Styling */
+.calculator-title {
     text-align: center;
     font-size: 2.5rem;
     color: #2c3e50;
     margin-bottom: 10px;
 }
 
-p {
+/* Description Styling */
+.calculator-description {
     text-align: center;
     color: #7f8c8d;
     margin-bottom: 30px;
 }
 
+/* Form Section Styling */
 .form-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
+/* Form Box Styling */
 .form-box {
     width: 45%;
     margin-bottom: 20px;
-    padding: 10px; 
-    background-color: transparent; 
+    padding: 10px;
+    background-color: transparent;
     border-radius: 5px;
-    box-shadow: none; 
+    box-shadow: none;
     text-align: center;
 }
 
@@ -58,6 +60,7 @@ p {
     color: #2c3e50;
 }
 
+/* Input Field Styling */
 .input-field {
     width: 60%;
     padding: 10px;
@@ -68,6 +71,7 @@ p {
     margin-bottom: 10px;
 }
 
+/* Button Styling */
 .gender-btn, .unit-btn, .activity-btn {
     padding: 10px 20px;
     font-size: 1rem;
@@ -84,6 +88,7 @@ p {
     color: #2c3e50;
 }
 
+/* Submit Button Styling */
 .submit-btn {
     width: 100%;
     padding: 15px;
@@ -99,4 +104,98 @@ p {
 
 .submit-btn:hover {
     background-color: #2ecc71;
+}
+
+.gender-btn.active, .activity-btn.active {
+    background-color: #1abc9c;
+    color: white;
+}
+
+/* TDEE Result Section */
+.tdee-result-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.tdee-result-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c3e50; /* Normal mode dark text */
+}
+
+.tdee-result-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tdee-result-card {
+    background-color: #f9f9f9; /* Light background for regular mode */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    margin: 20px;
+    text-align: center;
+}
+
+.tdee-result-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #2c3e50; /* Dark text */
+}
+
+.cal-intake {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cal-range {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3498db; /* Calorie range in blue */
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1rem;
+    color: #7f8c8d; /* Lighter text */
+}
+
+/* Dark Mode Adjustments for readability */
+.dark-mode .calculator-container,
+.dark-mode .tdee-result-card {
+    color: #2c3e50; /* Dark text for better contrast with white background */
+}
+
+.dark-mode .input-field,
+.dark-mode .form-box h2,
+.dark-mode .tdee-result-card h3,
+.dark-mode .description,
+.dark-mode .cal-intake {
+    color: #2c3e50; /* Dark text for inputs and result card headings */
+}
+
+/* Ensure "Your Personal Result" text is dark in dark mode */
+.dark-mode h2.personal-result-text {
+    color: #2c3e50 !important; /* Force dark text */
+}
+
+/* Keep the submit button consistent in dark mode */
+.dark-mode .submit-btn {
+    background-color: #27ae60;
+    color: white;
+}
+
+/* Default container background stays light in dark mode */
+.dark-mode .tdee-result-card {
+    background-color: #f9f9f9; /* Light card background */
+    color: #2c3e50; /* Dark text */
+}
+
+/* Additional dark mode adjustments for form section */
+.dark-mode .form-box h2 {
+    color: #2c3e50 !important; /* Ensure form heading stays dark */
 }
