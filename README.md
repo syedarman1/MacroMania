@@ -66,4 +66,4 @@ This project is licensed under the MIT License.
 
 For any queries or feedback, feel free to reach out via the contact page or contribute directly on GitHub.
 
-### [Visit Macromania](https://macromania-24f2dd3c8d6f.herokuapp.com/) | [GitHub Repository](https://github.com/syedarman/macromania)
+### [Visit Macromania](https://macromania-24f2dd3c8d6f.herokuapp.com/) | [GitHub Repository](https://github.com/syedarman1/macromania)
