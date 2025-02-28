@@ -1,0 +1,603 @@
+
+:root {
+    --primary: #00b894;         /* Vibrant mint green */
+    --secondary: #0984e3;       /* Bright blue accent */
+    --dark: #2d3436;            /* Dark text color */
+    --light-bg: #fdfdfd;        /* Light background */
+    --card-bg: #ffffff;         /* White card */
+    --border-color: #dfe6e9;    /* Light border color */
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --font-family: 'Poppins', sans-serif;
+    --input-bg: #f8f9fa;
+  }
+  
+  /* ---------- Global Reset & Base ---------- */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    background-color: var(--light-bg);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  
+  /* ---------- Navigation ---------- */
+  nav.navbar {
+    background-color: var(--dark);
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  nav.navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav.navbar li {
+    margin-right: 20px;
+  }
+  nav.navbar li.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+  }
+  nav.navbar li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  nav.navbar li a:hover {
+    color: var(--primary);
+  }
+  
+  /* ---------- Header ---------- */
+  header {
+    text-align: center;
+    padding: 20px 0;
+  }
+  header img.logo {
+    max-width: 160px;
+  }
+  
+  .container,
+  .calculator-container,
+  .contact-container,
+  .food-database-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 24px;
+    background-color: var(--card-bg);
+    border: none;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+  
+  /* ---------- Typography ---------- */
+  h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--dark);
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #636e72;
+  }
+  
+  /* ---------- Buttons ---------- */
+  .btn,
+  .gender-btn,
+  .unit-btn,
+  .activity-btn,
+  .submit-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+  }
+  .btn-primary,
+  .gender-btn {
+    background-color: var(--secondary);
+    color: #fff;
+  }
+  .btn-primary:hover,
+  .gender-btn:hover {
+    background-color: #0772b9;
+    transform: translateY(-2px);
+  }
+  .unit-btn,
+  .activity-btn {
+    background-color: #ecf0f1;
+    color: var(--dark);
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    background-color: var(--primary);
+    color: #fff;
+    margin-top: 20px;
+  }
+  .submit-btn:hover {
+    background-color: #00a481;
+    transform: translateY(-2px);
+  }
+  .active {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+  }
+  
+  /* ---------- Forms & Inputs ---------- */
+  .form-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .form-box {
+    flex: 1 1 300px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: var(--input-bg);
+  }
+  
+  /* ---------- Calorie Tracker Page ---------- */
+  .calorie-tracker-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--dark);
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  .search-bar .form-control {
+    flex: 1;
+    max-width: 600px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1rem;
+  }
+  .search-bar .btn-primary {
+    padding: 1rem 1.5rem;
+    background-color: var(--secondary);
+    border-radius: 8px;
+    font-size: 1.1rem;
+  }
+  
+  /* Unit Section */
+  .unit-section {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .unit-section label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: var(--dark);
+  }
+  .unit-section input,
+  .unit-section select {
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 0.5rem;
+  }
+  
+  /* Nutrition Container & Cards */
+  .nutrition-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .nutrition-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    flex: 1 1 200px;
+    text-align: center;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .nutrition-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+  }
+  .nutrition-card strong {
+    color: var(--secondary);
+  }
+  
+  /* ---------- Food Database Layout ---------- */
+  .food-database-title {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  .food-database-description {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #636e72;
+  }
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .category-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+  .category-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .category-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .category-name {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: var(--dark);
+  }
+  .category-description {
+    font-size: 1rem;
+    color: #636e72;
+  }
+  
+
+  .category-detail-container {
+    max-width: 900px;
+    margin: 40px auto; 
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border: none;      
+    box-shadow: none;  
+    border-radius: 8px;
+    text-align: center; 
+  }
+  
+  /*
+    Title & description for the categorys
+  */
+  .category-detail-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+  }
+  .category-detail-description {
+    font-size: 1.1rem;
+    color: #636e72;
+    margin-bottom: 2rem;
+  }
+  
+ 
+  .table-container {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;           
+    box-shadow: 0 2px 6px var(--shadow-color);
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+
+  .food-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+  }
+  .food-table thead tr {
+    background-color: #f4f4f4;
+  }
+  .food-table th {
+    color: var(--dark);
+    font-weight: 600;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .food-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--dark);
+  }
+  .food-table tr:nth-child(even) {
+    background-color: #fcfcfc;
+  }
+  .food-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+
+  .dark-mode .category-detail-container {
+    background-color: #34495e;
+    border-color: #555;
+    box-shadow: none;
+  }
+  .dark-mode .category-detail-title,
+  .dark-mode .category-detail-description {
+    color: #ecf0f1;
+  }
+  .dark-mode .table-container {
+    border-color: #555;
+    box-shadow: none;
+  }
+  .dark-mode .food-table {
+    background-color: #3b4a54;
+  }
+  .dark-mode .food-table th,
+  .dark-mode .food-table td {
+    color: #ecf0f1;
+    border-bottom: 1px solid #555;
+  }
+  .dark-mode .food-table tr:nth-child(even) {
+    background-color: #455a64;
+  }
+  .dark-mode .food-table tr:hover {
+    background-color: #546e7a;
+  }
+  /* Target the table header row in dark mode */
+  .dark-mode .food-table thead tr {
+    background-color: #455a64; /* or another dark shade */
+  }
+  /* Optionally, if you want the header text to be white: */
+  .dark-mode .food-table th {
+    color: #ecf0f1; /* White-ish text */
+    border-bottom: 1px solid #555;
+  }
+  
+  /* ---------- TDEE Calculator Layout ---------- */
+  .calculator-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 32px;
+    background-color: var(--card-bg);
+    border: none;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+  .calculator-title {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    color: var(--dark);
+  }
+  .calculator-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #636e72;
+  }
+  .tdee-result-section {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .tdee-result-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .tdee-result-card {
+    background-color: #fafafa;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    padding: 24px;
+    width: 320px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .tdee-result-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+  }
+  .tdee-result-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  .cal-intake {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .cal-range {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 8px;
+  }
+  .description {
+    font-size: 1rem;
+    color: #636e72;
+  }
+  
+  /* ---------- Contact Page Layout ---------- */
+  .contact-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 24px;
+    background-color: var(--card-bg);
+    border: none;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+  .contact-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+  }
+  .contact-description {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #636e72;
+  }
+  .success-message {
+    background-color: #dff9fb;
+    color: var(--dark);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #c7ecee;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  /* ---------- Dark Mode ---------- */
+  .dark-mode {
+    background-color: var(--dark);
+    color: #ecf0f1;
+  }
+  .dark-mode nav.navbar {
+    background-color: #1a252f;
+  }
+  .dark-mode header,
+  .dark-mode .container,
+  .dark-mode .calculator-container,
+  .dark-mode .contact-container,
+  .dark-mode .food-database-container,
+  .dark-mode .category-detail-container {
+    background-color: #34495e;
+    border-color: #555;
+    box-shadow: none;
+  }
+  .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+    color: #ecf0f1;
+  }
+  .dark-mode p,
+  .dark-mode label,
+  .dark-mode .calorie-tracker-title,
+  .dark-mode .food-table th,
+  .dark-mode .food-table td,
+  .dark-mode .category-detail-title,
+  .dark-mode .category-detail-description {
+    color: #ecf0f1;
+  }
+  .dark-mode a {
+    color: var(--primary);
+  }
+  .dark-mode .input-field,
+  .dark-mode .form-box h2 {
+    color: #ffffff;
+    background-color: #455a64;
+    border-color: #555;
+  }
+  .dark-mode .submit-btn {
+    background-color: var(--primary);
+    color: #fff;
+  }
+  .dark-mode .nutrition-card,
+  .dark-mode .category-card,
+  .dark-mode .tdee-result-card,
+  .dark-mode .table-container,
+  .dark-mode .food-table {
+    background-color: #3b4a54;
+    border-color: #555;
+    color: #ecf0f1;
+  }
+  .dark-mode .food-table tr:nth-child(even) {
+    background-color: #455a64;
+  }
+  .dark-mode .food-table tr:hover {
+    background-color: #546e7a;
+  }
+  
+  /* ---------- Responsive ---------- */
+  @media (max-width: 600px) {
+    .form-box {
+      width: 100%;
+    }
+    .input-field {
+      width: 100%;
+    }
+    .container,
+    .calculator-container,
+    .contact-container,
+    .food-database-container,
+    .category-detail-container {
+      padding: 15px;
+    }
+  }
+  
+
+  .food-group-title {
+    display: inline-block;         
+    position: relative;            
+    font-size: 1.8rem;            
+    font-weight: 700;             
+    text-transform: uppercase;    
+    letter-spacing: 1.2px;         
+    margin: 2rem 0 1rem;           
+    padding-bottom: 0.5rem;       
+    color: var(--primary);    
+  }
+  
+
+  .food-group-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;                    
+    bottom: 0;                   
+    transform: translateX(-50%); 
+    width: 60px;                   
+    height: 3px;
+    background-color: var(--secondary); 
+    border-radius: 2px;         
+  }
+  
+  /* Dark Mode Overrides for .food-group-title */
+  .dark-mode .food-group-title {
+    color: #ecf0f1;                /* Lighter color on dark background */
+  }
+  .dark-mode .food-group-title::after {
+    background-color: #ecf0f1;     /* White-ish bar in dark mode */
+  }
+  

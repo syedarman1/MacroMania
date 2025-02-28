@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-j_au@t165rhf1%1higm-a*s&&&sp1c3^@1k!iq!ii@(_#w0@+6'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['macromania-24f2dd3c8d6f.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -106,6 +106,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

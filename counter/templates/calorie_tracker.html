@@ -46,8 +46,6 @@
       </script>
       {% endif %}
 
-      <button class="btn btn-secondary" id="dark-mode-toggle">Toggle Dark Mode</button>
-
     </div>
   </div>
 
@@ -76,7 +74,7 @@
       document.getElementById("sugar").innerText = `Sugar: ${(sugar * conversionFactor).toFixed(2)} g`;
     }
 
-    // Dark mode
+    {% comment %} // Dark mode
     document.addEventListener("DOMContentLoaded", function() {
       const darkModeToggle = document.getElementById("dark-mode-toggle");
 
@@ -107,7 +105,7 @@
           enableDarkMode();
         }
       });
-    });
+    }); {% endcomment %}
 
     
     document.getElementById('unit-input').addEventListener('input', updateUnits);

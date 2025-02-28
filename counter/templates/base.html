@@ -4,46 +4,67 @@
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="{% static 'images/favicon.ico' %}">
     <title>MacroMania</title>
-
-    {% block extra_styles %}
-    {% endblock %}
-
+    {% block extra_styles %}{% endblock %}
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   </head>
-
   <body>
     <nav class="navbar">
       <ul>
-        <li class="logo"><a href="#">MacroMania</a></li>
-        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="logo"><a href="{% url 'food_database' %}">MacroMania</a></li>
+        <li><a href="{% url 'calorie_tracker' %}">Calorie Tracker</a></li>
         <li><a href="{% url 'bmi_calculator' %}">BMI Calculator</a></li>
         <li><a href="{% url 'tdee_calculator' %}">TDEE Calculator</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li>
+          <button id="dark-mode-toggle" style="background:none;border:none;cursor:pointer;font-size:1.5rem;">
+            🌙
+          </button>
+        </li>
       </ul>
     </nav>
 
-    
     <header>
       <img src="{% static 'images/Logo.png' %}" id="logo" class="logo" alt="MacroMania Logo" />
     </header>
 
     <div class="container">
-      {% block content %}
-      {% endblock %}
+      {% block content %}{% endblock %}
     </div>
-  </body>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const darkMode = localStorage.getItem("darkMode");
-      if (darkMode === "enabled") {
-        document.body.classList.add("dark-mode"); 
-      }
-    });
-  </script>
-  
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        function enableDarkMode() {
+          document.body.classList.add("dark-mode");
+          localStorage.setItem("darkMode", "enabled");
+          darkModeToggle.textContent = "☀️"; // Switch 
+        }
+
+        function disableDarkMode() {
+          document.body.classList.remove("dark-mode");
+          localStorage.setItem("darkMode", "disabled");
+          darkModeToggle.textContent = "🌙"; // Switch 
+        }
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+          enableDarkMode();
+        } else {
+          disableDarkMode();
+        }
+
+        darkModeToggle.addEventListener("click", function() {
+          if (localStorage.getItem("darkMode") === "enabled") {
+            disableDarkMode();
+          } else {
+            enableDarkMode();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

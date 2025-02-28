@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="food-database-container">
+  <h1 class="food-database-title">MacroMania Food Database</h1>
+  <p class="food-database-description">
+    Browse our categories to explore detailed nutritional information for each food item.
+  </p>
+
+  <div class="category-grid">
+    {% for category in categories %}
+      <div class="category-card">
+        <a href="{% url 'category_detail' category.slug %}">
+          {% if category.image %}
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-image">
+          {% else %}
+            <img src="{% static 'images/placeholder.png' %}" alt="{{ category.name }}" class="category-image">
+          {% endif %}
+          <h3 class="category-name">{{ category.name }}</h3>
+        </a>
+        <p class="category-description">{{ category.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

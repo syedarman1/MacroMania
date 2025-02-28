@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="category-detail-container">
+  <h2 class="category-detail-title">{{ category.name }}</h2>
+  <p class="category-detail-description">{{ category.description }}</p>
+
+  {% if foods %}
+    {% regroup foods by food_name.0 as grouped_foods %}
+    
+    {% for group in grouped_foods %}
+      {% if group.grouper %}
+        <h3 class="food-group-title">{{ group.grouper|upper }}</h3>
+        <div class="table-container">
+          <table class="food-table">
+            <thead>
+              <tr>
+                <th>Food</th>
+                <th>Serving</th>
+                <th>Calories</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for food in group.list %}
+              <tr>
+                <td>{{ food.food_name }}</td>
+                <td>{{ food.serving_qty }} {{ food.serving_unit }}</td>
+                <td>{{ food.nf_calories }} Cal</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <p>No food items found for this category.</p>
+  {% endif %}
+</div>
+{% endblock %}
